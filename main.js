@@ -7,7 +7,8 @@ const currentLocation = document.querySelector('.location .city');
 const currentTemp = document.querySelector('.current .temp');
 const currentDescription = document.querySelector('.current .description');
 const currentFeelsLike = document.querySelector('.current .feels-like');
-const searchBox = document.querySelector('search-box');
+const goButton = document.getElementById("go-button");
+const searchBox = document.getElementById("search");
 
 //Date builder function
 const DateBuilder = () => {
@@ -26,7 +27,6 @@ window.addEventListener('load', () => {
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(currentPosition => {
-            console.log(currentPosition);
             long = currentPosition.coords.longitude;
             lat = currentPosition.coords.latitude;
 
@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
             .then(weather => {
                 currentTemp.textContent = `${Math.round(weather.main.temp)}°C`;
                 currentDescription.textContent = `${weather.weather[0].main}`;
-                currentFeelsLike.textContent = `Feels like ${weather.main.feels_like}°C`;
+                currentFeelsLike.textContent = `Feels like ${Math.round(weather.main.feels_like)}°C`;
                 currentLocation.textContent = `${weather.name}, ${weather.sys.country}`;
             })
             DateBuilder();
@@ -48,3 +48,23 @@ window.addEventListener('load', () => {
     }  
 })
 
+
+
+//Event and function on search
+//function which gets the weather
+const getWeather = (q) => {
+const apiCall2 = `${url}weather?q=${q}&units=metric&appid=${apiKey}`;
+fetch(apiCall2)
+    .then(response => {
+        return response.json()
+    })
+    .then(weather => {
+        currentLocation.textContent = `${weather.name}, ${weather.sys.country}`;
+        currentTemp.textContent = `${Math.round(weather.main.temp)}°C`;
+        currentDescription.textContent = `${weather.weather[0].main}`;
+        currentFeelsLike.textContent = `Feels like ${Math.round(weather.main.feels_like)}°C`;
+    })
+    DateBuilder();
+    };
+    
+goButton.onclick = getWeather(searchBox.value);

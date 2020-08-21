@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Weather app </title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://use.fontawesome.com/383a7dc90d.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="app-container">
         <header>
-            <input class="search-box" type="text" placeholder=" Search for a city..." autocomplete="off">
+            <input id="search" class="search-box" type="text" placeholder=" Search for a city..." autocomplete="off" value="">
+            <i id="go-button" class="fa fa-arrow-circle-right fa-2x" aria-hidden="true" style="color: rgba(255, 255, 255, 0.45)"></i>
         </header>
         <main>
             <section class="location">
