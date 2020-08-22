@@ -101,3 +101,12 @@ main {
     font-weight: 400;
     margin: 0.3rem auto;
 }
+
+footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 50px;
+    padding: 1rem 1.5rem;
+    color: rgb(255, 255, 255);
+}
