@@ -7,8 +7,8 @@ const currentLocation = document.querySelector('.location .city');
 const currentTemp = document.querySelector('.current .temp');
 const currentDescription = document.querySelector('.current .description');
 const currentFeelsLike = document.querySelector('.current .feels-like');
-const goButton = document.getElementById("go-button");
-const searchBox = document.getElementById("search");
+const currentHiLow = document.querySelector('.current .hi-low');
+const search = document.getElementById("search");
 
 //Date builder function
 const DateBuilder = () => {
@@ -24,7 +24,6 @@ const DateBuilder = () => {
 window.addEventListener('load', () => {
     let long; //longitude of current area
     let lat; //latitude of current area
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(currentPosition => {
             long = currentPosition.coords.longitude;
@@ -40,6 +39,7 @@ window.addEventListener('load', () => {
                 currentDescription.textContent = `${weather.weather[0].main}`;
                 currentFeelsLike.textContent = `Feels like ${Math.round(weather.main.feels_like)}°C`;
                 currentLocation.textContent = `${weather.name}, ${weather.sys.country}`;
+                currentHiLow.textContent = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`
             })
             DateBuilder();
     });
@@ -48,10 +48,14 @@ window.addEventListener('load', () => {
     }  
 })
 
+//Event and function on search which gets the weather
+let query;
+function displayResults(e) {
+    query = e.target.value;
+    getWeather(query);
+   }
+search.addEventListener('change', displayResults);
 
-
-//Event and function on search
-//function which gets the weather
 const getWeather = (q) => {
 const apiCall2 = `${url}weather?q=${q}&units=metric&appid=${apiKey}`;
 fetch(apiCall2)
@@ -60,11 +64,10 @@ fetch(apiCall2)
     })
     .then(weather => {
         currentLocation.textContent = `${weather.name}, ${weather.sys.country}`;
-        currentTemp.textContent = `${Math.round(weather.main.temp)}°C`;
+        currentTemp.innerHTML = `${Math.round(weather.main.temp)}°C`;
         currentDescription.textContent = `${weather.weather[0].main}`;
         currentFeelsLike.textContent = `Feels like ${Math.round(weather.main.feels_like)}°C`;
+        currentHiLow.textContent = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
     })
     DateBuilder();
-    };
-    
-goButton.onclick = getWeather(searchBox.value);
+};
