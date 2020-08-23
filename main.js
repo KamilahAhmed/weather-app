@@ -65,13 +65,14 @@ function displayResults(e) {
    }
 search.addEventListener('change', displayResults);
 
- const getWeather = (q) => {
+const getWeather = (q) => {
+    q = q.toString().trim();
 const apiCall2 = `${url}weather?q=${q}&units=metric&appid=${apiKey}`;
 fetch(apiCall2)
     .then(response => {
         if (response.ok) {
             return response.json()
-        } alert('City not found, please try another');
+        } alert('City not found, try again');
         throw new Error('Request failed!'); 
     }, networkError => console.log(networkError.message)
     ).then(weather => {
