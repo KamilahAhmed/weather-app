@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+    background-image: linear-gradient(to bottom, #13457A, #80D0C7);
 }
 
 header {
@@ -38,10 +38,6 @@ header input:focus {
     border-bottom: 0.2rem solid rgba(225, 225, 225, 0.5);
 }
 
-.fa .fa-arrow-circle-right {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
 main {
     flex: 1 1 100%;
     margin: 0.5rem auto;
@@ -67,6 +63,7 @@ main {
     font-weight: 800;
     color: rgb(255, 255, 255);
     text-shadow: 0.1rem 0.5rem rgba(0, 0, 0, 0.5);
+    margin-top: 1rem;
     margin-bottom: 0rem;
 }
 
@@ -94,6 +91,28 @@ main {
     font-size: 1.5rem;
     font-weight: 400;
     margin: 0.3rem auto;
+}
+
+.current .fahrenheit {
+    margin-top: 8rem;
+    color: rgba(225, 225, 225, 0.7);
+    display: none;
+}
+
+.current .celcius {
+    margin-top: 8rem;
+    color: rgba(225, 225, 225, 0.7);
+    display: none;
+}
+
+.current .fahrenheit:hover {
+    color: rgb(225, 225, 225);
+    text-decoration: underline;
+}
+
+.current .celcius:hover {
+    color: rgb(225, 225, 225);
+    text-decoration: underline;
 }
 
 footer {
