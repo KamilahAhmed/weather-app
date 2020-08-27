@@ -42,7 +42,7 @@ window.addEventListener('load', () => {
             setTimeout(() => {
                 dateBuilder(); 
                 switchToF.style.display = 'block';
-            }, 500);
+            }, 750);
     })
     } else {
         alert('App cannot access current location, please change location settings');
@@ -67,7 +67,7 @@ const getWeather = (q) => {
         .then(weather => {
             if (weather.ok) {
                 return weather.json()
-            } alert('City not found, try again');
+            } alert(`${city} not found, try again`);
             throw new Error('Request failed!'); 
         }, networkError => console.log(networkError.message)
         ).then(getWeatherInfo)
@@ -87,7 +87,7 @@ search.addEventListener('change', displayResults);
 //Function and event for temperature switch from celcius to fahrenheit
 const changeTempUnitToF = () => {
     unit = 'imperial';
-    const apiCall2 = `${url}weather?q=${city}&units=${unit}&appid=${apiKey}`;
+    const apiCall2 = `${url}weather?q=${currentLocation.innerHTML}&units=${unit}&appid=${apiKey}`;
     fetch(apiCall2)
         .then(weather => {
             if (weather.ok) {
@@ -115,6 +115,6 @@ const changeTempUnitToC = () => {
     setTimeout(() => {
         switchToF.style.display = 'block';
     }, 500);
-    getWeather(city);
+    getWeather(currentLocation.innerHTML);
 }
 switchToC.addEventListener('click', changeTempUnitToC);

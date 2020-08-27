@@ -102,13 +102,13 @@ main {
 }
 
 .current .fahrenheit {
-    margin-top: 8rem;
+    margin-top: 5rem;
     color: rgba(225, 225, 225, 0.7);
     display: none;
 }
 
 .current .celcius {
-    margin-top: 8rem;
+    margin-top: 5rem;
     color: rgba(225, 225, 225, 0.7);
     display: none;
 }
