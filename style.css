@@ -10,7 +10,11 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom, #13457A, #80D0C7);
+    background-image: url('./sharad-bhat-4MGN66lfnX8-unsplash.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
 }
 
 header {
@@ -35,14 +39,14 @@ header input {
     outline: none;
     padding: 0.5rem;
     border: none;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 1rem 0 ;
     color: rgba(0 ,0, 0, 0.5);
-    border-bottom: 0.2rem solid rgba(0, 0, 0, 0.2); 
+    border-bottom: 0.2rem solid rgba(0, 0, 0, 0.8); 
 }
 
 header input:focus {
-    background-color: rgba(255, 255, 255, 0.65); 
+    background-color: rgba(255, 255, 255, 0.8); 
     border-bottom: 0.2rem solid rgba(225, 225, 225, 0.5);
 }
 
@@ -91,7 +95,7 @@ main {
     color: rgb(255, 255, 255);
     font-weight: 600;
     text-shadow: 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .current .feels-like {
@@ -103,13 +107,13 @@ main {
 
 .current .fahrenheit {
     margin-top: 5rem;
-    color: rgba(225, 225, 225, 0.7);
+    color: rgba(225, 225, 225, 0.9);
     display: none;
 }
 
 .current .celcius {
     margin-top: 5rem;
-    color: rgba(225, 225, 225, 0.7);
+    color: rgba(225, 225, 225, 0.9);
     display: none;
 }
 
@@ -125,9 +129,19 @@ main {
 
 footer {
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
     height: 50px;
     padding: 1rem 1.5rem;
     color: rgb(255, 255, 255);
+}
+
+footer div {
+    flex: 1;
+}
+
+footer p, footer p a, footer span {
+    font-size: 0.8rem;
+}
+
+.icons8, .unsplash {
+    color: white;
 }

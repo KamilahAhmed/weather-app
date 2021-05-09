@@ -6,6 +6,7 @@ const appContainer = document.querySelector('.app-container');
 const currentDate = document.querySelector('.location .date');
 const currentLocation = document.querySelector('.location .city');
 const currentTemp = document.querySelector('.current .temp');
+const currentIcon = document.querySelector('.current .weather-icon');
 const currentDescription = document.querySelector('.current .description');
 const currentFeelsLike = document.querySelector('.current .feels-like');
 const currentHiLow = document.querySelector('.current .hi-low');
@@ -56,6 +57,26 @@ const getWeatherInfo = (weather) => {
     currentDescription.innerHTML = `${weather.weather[0].main}`;
     currentFeelsLike.innerHTML = `Feels like ${Math.round(weather.main.feels_like)}°C`;
     currentHiLow.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+
+    if (`${weather.weather[0].main}` === 'Clouds') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/clouds.png"; 
+    } else if (`${weather.weather[0].main}` == 'Clear') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/sun--v1.png"; 
+    } else if (`${weather.weather[0].main}` == 'Lightning') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/lightning-bolt.png"; 
+    } else if (`${weather.weather[0].main}` == 'Snow') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/snow.png"; 
+    } else if (`${weather.weather[0].main}` == 'Rain') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/downpour--v1.png";
+    } else if (`${weather.weather[0].main}` == 'Thunderstorm') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/cloud-lighting.png"; 
+    } else if (`${weather.weather[0].main}` == 'Haze') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/fog-day.png"; 
+    } else if (`${weather.weather[0].main}` == 'Fog') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/fog-night--v1.png"; 
+    } else if (`${weather.weather[0].main}` == 'Sunny') {
+        currentIcon.src = "https://img.icons8.com/windows/64/ffffff/sun--v1.png"; 
+    }
 }
 
 //Event and function on search which gets the weather
@@ -67,7 +88,7 @@ const getWeather = (q) => {
         .then(weather => {
             if (weather.ok) {
                 return weather.json()
-            } alert(`${city} not found, try again`);
+            } alert(`${city.toString().toUpperCase()} not found, please try another city`);
             throw new Error('Request failed!'); 
         }, networkError => console.log(networkError.message)
         ).then(getWeatherInfo)
@@ -102,6 +123,7 @@ const changeTempUnitToF = () => {
             currentFeelsLike.innerHTML = `Feels like ${Math.round(weather.main.feels_like)}°F`;
             currentHiLow.innerHTML = `${Math.round(weather.main.temp_min)}°F / ${Math.round(weather.main.temp_max)}°F`;
         })
+
         switchToF.style.display = 'none';
         setTimeout(() => {
             switchToC.style.display = 'block';
